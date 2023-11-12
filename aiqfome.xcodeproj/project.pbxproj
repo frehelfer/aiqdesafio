@@ -20,6 +20,7 @@
 		8DFD48C72B01680700B96F7F /* Nunito.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD48C62B01680700B96F7F /* Nunito.ttf */; };
 		8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48C92B01693300B96F7F /* UIFont+Extensions.swift */; };
 		8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */; };
+		8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48CE2B018E0E00B96F7F /* Item.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8DFD48C62B01680700B96F7F /* Nunito.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nunito.ttf; sourceTree = "<group>"; };
 		8DFD48C92B01693300B96F7F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
 		8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAbstractFactory.swift; sourceTree = "<group>"; };
+		8DFD48CE2B018E0E00B96F7F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 			children = (
 				8DF22D602B00083E0048DFBA /* AppDelegate.swift */,
 				8DF22D622B00083E0048DFBA /* SceneDelegate.swift */,
+				8DFD48CD2B01882500B96F7F /* Models */,
 				8DFD48C82B0168F800B96F7F /* Extensions */,
 				8DFD48C42B01674B00B96F7F /* Resources */,
 				8DF22D792B000BA70048DFBA /* Utils */,
@@ -134,6 +137,14 @@
 				8DFD48C92B01693300B96F7F /* UIFont+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8DFD48CD2B01882500B96F7F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				8DFD48CE2B018E0E00B96F7F /* Item.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -213,6 +224,7 @@
 				8DF22D7D2B000CE30048DFBA /* ItemView.swift in Sources */,
 				8DF22D7B2B000BC10048DFBA /* ViewCode.swift in Sources */,
 				8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */,
+				8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */,
 				8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */,
 				8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */,
 				8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */,
