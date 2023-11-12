@@ -9,8 +9,13 @@ import UIKit
 
 class ItemViewController: UIViewController {
     
+    private lazy var itemView: ItemView = {
+        let view = ItemView()
+        view.setupView(tableViewDelegate: self, tableViewDataSource: self)
+        return view
+    }()
+    
     private var viewModel: ItemViewModel
-    private var itemView = ItemView()
     
     init(viewModel: ItemViewModel) {
         self.viewModel = viewModel
@@ -28,7 +33,15 @@ class ItemViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+}
 
-
+extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        UITableViewCell()
+    }
 }
 

@@ -10,14 +10,12 @@ import UIKit
 class ItemView: UIView {
     
     // MARK: - Properties
-    private lazy var testLabel: UILabel = {
-        let label = UILabel()
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.numberOfLines = 0
-        label.textColor = .label
-        label.font = .systemFont(ofSize: 15)
-        label.text = "Test"
-        return label
+    private lazy var tableView: UITableView = {
+        let tableView = UITableView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.identifier)
+        tableView.isScrollEnabled = true
+        return tableView
     }()
     
     // MARK: - Init
@@ -31,25 +29,31 @@ class ItemView: UIView {
     }
     
     // MARK: - Internal Actions
-    func setupView() {
-        // setup das propriedades
+    func setupView(tableViewDelegate: UITableViewDelegate, tableViewDataSource: UITableViewDataSource) {
+        tableView.delegate = tableViewDelegate
+        tableView.dataSource = tableViewDataSource
     }
 }
 
 // MARK: - ViewCode
 extension ItemView: ViewCode {
     func addSubviews() {
-        addSubview(testLabel)
+        addSubview(tableView)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            testLabel.centerXAnchor.constraint(equalTo: centerXAnchor),
-            testLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            // tableView
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+            
         ])
     }
     
     func setupStyle() {
-        backgroundColor = .purple
+        backgroundColor = .purpleDefault
     }
 }
