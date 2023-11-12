@@ -18,6 +18,13 @@ class ItemView: UIView {
         return tableView
     }()
     
+    private lazy var test: UIView = {
+        let tableView = HeaderView()
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        
+        return tableView
+    }()
+    
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,21 +46,25 @@ class ItemView: UIView {
 extension ItemView: ViewCode {
     func addSubviews() {
         addSubview(tableView)
+        addSubview(test)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
             // tableView
-            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
+//            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+//            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+//            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+//            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
+            test.leadingAnchor.constraint(equalTo: leadingAnchor),
+            test.trailingAnchor.constraint(equalTo: trailingAnchor),
+            test.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
         ])
     }
     
     func setupStyle() {
-        backgroundColor = .purpleDefault
+        backgroundColor = .whiteDefault
     }
 }
