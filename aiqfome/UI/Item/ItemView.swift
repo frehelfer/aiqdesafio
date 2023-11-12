@@ -13,15 +13,8 @@ class ItemView: UIView {
     private lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.register(ItemTableViewCell.self, forCellReuseIdentifier: ItemTableViewCell.identifier)
+        tableView.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
         tableView.isScrollEnabled = true
-        return tableView
-    }()
-    
-    private lazy var test: UIView = {
-        let tableView = HeaderView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
         return tableView
     }()
     
@@ -46,25 +39,18 @@ class ItemView: UIView {
 extension ItemView: ViewCode {
     func addSubviews() {
         addSubview(tableView)
-        addSubview(test)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            
-            // tableView
-//            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
-//            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
-//            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
-//            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
-            
-            test.leadingAnchor.constraint(equalTo: leadingAnchor),
-            test.trailingAnchor.constraint(equalTo: trailingAnchor),
-            test.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableView.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: bottomAnchor),
         ])
     }
     
     func setupStyle() {
-        backgroundColor = .whiteDefault
+        backgroundColor = .purpleDefault
     }
 }

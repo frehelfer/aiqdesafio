@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HeaderView: UIView {
+final class HeaderView: UIView {
     
     // MARK: - Properties
     private lazy var aiqLogo: UIImageView = {
@@ -66,7 +66,7 @@ class HeaderView: UIView {
     // MARK: - Init
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setupAddressLabel(text: "Rua Mandaguari, 198")
+        configureWith(text: "Rua Mandaguari, 198")
         setupViewCode()
     }
     
@@ -74,7 +74,7 @@ class HeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupAddressLabel(text: String) {
+    func configureWith(text: String) {
         let attributedString = NSMutableAttributedString(string: text + " ")
         let icon = NSTextAttachment(image: UIImage(resource: .chevronRight).withTintColor(.whiteDefault))
         icon.bounds = CGRect(origin: CGPoint(x: 0, y: -3.0), size: CGSize(width: 16, height: 16))
@@ -110,8 +110,7 @@ extension HeaderView: ViewCode {
             // addressStack
             addressStack.leadingAnchor.constraint(equalTo: locationIcon.trailingAnchor, constant: 10),
             addressStack.trailingAnchor.constraint(equalTo: profileIcon.leadingAnchor, constant: -24),
-            addressStack.topAnchor.constraint(equalTo: topAnchor, constant: 14.5),
-            addressStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -14.5),
+            addressStack.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             // profileIcon
             profileIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -121,6 +120,13 @@ extension HeaderView: ViewCode {
     
     func setupStyle() {
         backgroundColor = .purpleDefault
+    }
+}
+
+// MARK: - MyAbstractFactory
+extension HeaderView: MyAbstractFactory {
+    func getCellHeight() -> CGFloat {
+        72
     }
 }
 

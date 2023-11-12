@@ -35,13 +35,25 @@ class ItemViewController: UIViewController {
     }
 }
 
-extension ItemViewController: UITableViewDelegate, UITableViewDataSource {
+// MARK: - UITableViewDataSource
+extension ItemViewController: UITableViewDataSource {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        0
+        viewModel.getNumberOfCells()
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        UITableViewCell()
+        let view = viewModel.getCellViewForRowAt(row: indexPath.row)
+        let cell = MyTableViewCell(style: .default, reuseIdentifier: MyTableViewCell.identifier)
+        cell.configure(with: view)
+        return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension ItemViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        viewModel.getCellHeightForRowAt(row: indexPath.row)
     }
 }
 

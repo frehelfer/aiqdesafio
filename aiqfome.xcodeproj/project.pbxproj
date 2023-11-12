@@ -15,10 +15,11 @@
 		8DF22D7B2B000BC10048DFBA /* ViewCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF22D7A2B000BC10048DFBA /* ViewCode.swift */; };
 		8DF22D7D2B000CE30048DFBA /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF22D7C2B000CE30048DFBA /* ItemView.swift */; };
 		8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF22D7E2B00104C0048DFBA /* ItemViewModel.swift */; };
-		8DFD48C12B012CCE00B96F7F /* ItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48C02B012CCE00B96F7F /* ItemTableViewCell.swift */; };
+		8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48C02B012CCE00B96F7F /* MyTableViewCell.swift */; };
 		8DFD48C32B0130CB00B96F7F /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48C22B0130CB00B96F7F /* HeaderView.swift */; };
 		8DFD48C72B01680700B96F7F /* Nunito.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 8DFD48C62B01680700B96F7F /* Nunito.ttf */; };
 		8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48C92B01693300B96F7F /* UIFont+Extensions.swift */; };
+		8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,10 +33,11 @@
 		8DF22D7A2B000BC10048DFBA /* ViewCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCode.swift; sourceTree = "<group>"; };
 		8DF22D7C2B000CE30048DFBA /* ItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		8DF22D7E2B00104C0048DFBA /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
-		8DFD48C02B012CCE00B96F7F /* ItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemTableViewCell.swift; sourceTree = "<group>"; };
+		8DFD48C02B012CCE00B96F7F /* MyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTableViewCell.swift; sourceTree = "<group>"; };
 		8DFD48C22B0130CB00B96F7F /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
 		8DFD48C62B01680700B96F7F /* Nunito.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Nunito.ttf; sourceTree = "<group>"; };
 		8DFD48C92B01693300B96F7F /* UIFont+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Extensions.swift"; sourceTree = "<group>"; };
+		8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyAbstractFactory.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,7 +86,6 @@
 			isa = PBXGroup;
 			children = (
 				8DFD48BE2B012C5400B96F7F /* Components */,
-				8DFD48BF2B012CC300B96F7F /* Cell */,
 				8DF22D7E2B00104C0048DFBA /* ItemViewModel.swift */,
 				8DF22D642B00083E0048DFBA /* ItemViewController.swift */,
 				8DF22D7C2B000CE30048DFBA /* ItemView.swift */,
@@ -96,6 +97,8 @@
 			isa = PBXGroup;
 			children = (
 				8DF22D7A2B000BC10048DFBA /* ViewCode.swift */,
+				8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */,
+				8DFD48C02B012CCE00B96F7F /* MyTableViewCell.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -114,14 +117,6 @@
 				8DFD48C22B0130CB00B96F7F /* HeaderView.swift */,
 			);
 			path = Components;
-			sourceTree = "<group>";
-		};
-		8DFD48BF2B012CC300B96F7F /* Cell */ = {
-			isa = PBXGroup;
-			children = (
-				8DFD48C02B012CCE00B96F7F /* ItemTableViewCell.swift */,
-			);
-			path = Cell;
 			sourceTree = "<group>";
 		};
 		8DFD48C42B01674B00B96F7F /* Resources */ = {
@@ -217,7 +212,8 @@
 				8DF22D632B00083E0048DFBA /* SceneDelegate.swift in Sources */,
 				8DF22D7D2B000CE30048DFBA /* ItemView.swift in Sources */,
 				8DF22D7B2B000BC10048DFBA /* ViewCode.swift in Sources */,
-				8DFD48C12B012CCE00B96F7F /* ItemTableViewCell.swift in Sources */,
+				8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */,
+				8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */,
 				8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */,
 				8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */,
 				8DFD48C32B0130CB00B96F7F /* HeaderView.swift in Sources */,
