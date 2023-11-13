@@ -27,6 +27,7 @@
 		8DFD48DA2B0257DB00B96F7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D92B0257DB00B96F7F /* User.swift */; };
 		8DFD48DC2B0268A700B96F7F /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48DB2B0268A700B96F7F /* Cart.swift */; };
 		8DFD48DE2B027AC000B96F7F /* DividerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48DD2B027AC000B96F7F /* DividerView.swift */; };
+		8DFD48E02B0284EC00B96F7F /* CategoryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48DF2B0284EC00B96F7F /* CategoryHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,6 +53,7 @@
 		8DFD48D92B0257DB00B96F7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		8DFD48DB2B0268A700B96F7F /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 		8DFD48DD2B027AC000B96F7F /* DividerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DividerView.swift; sourceTree = "<group>"; };
+		8DFD48DF2B0284EC00B96F7F /* CategoryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +136,7 @@
 				8DFD48D02B01961A00B96F7F /* InfoView.swift */,
 				8DFD48D42B01B96C00B96F7F /* QuantityView.swift */,
 				8DFD48DD2B027AC000B96F7F /* DividerView.swift */,
+				8DFD48DF2B0284EC00B96F7F /* CategoryHeaderView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -254,6 +257,7 @@
 				8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */,
 				8DFD48DA2B0257DB00B96F7F /* User.swift in Sources */,
 				8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */,
+				8DFD48E02B0284EC00B96F7F /* CategoryHeaderView.swift in Sources */,
 				8DFD48DE2B027AC000B96F7F /* DividerView.swift in Sources */,
 				8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */,
 				8DFD48D82B0247EE00B96F7F /* QuantityButton.swift in Sources */,

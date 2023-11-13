@@ -46,6 +46,14 @@ class ItemViewModel {
         
         item.categoryList.forEach { categoryItem in
             customCells.append(DividerView())
+            
+            customCells.append(
+                CategoryHeaderView(
+                    categoryTitle: categoryItem.title,
+                    isRequired: categoryItem.isRequired,
+                    maxOrderQuantity: categoryItem.maxOrderQuantity
+                )
+            )
         }
     }
     
