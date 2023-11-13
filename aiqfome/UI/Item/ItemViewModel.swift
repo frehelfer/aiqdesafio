@@ -17,7 +17,8 @@ class ItemViewModel {
     
     var customCells: [MyAbstractFactory] = [
         HeaderView(),
-        InfoView()
+        InfoView(),
+        QuantityView()
     ]
     
     init() {

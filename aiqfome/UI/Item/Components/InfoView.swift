@@ -75,12 +75,12 @@ final class InfoView: UIView {
     private func configureMinimunPriceLabel(text: String) {
         let attributedString = NSMutableAttributedString(string: "a partir de  ")
         
-        let das = NSAttributedString(string: "R$ " + text, attributes: [
+        let customPriceString = NSAttributedString(string: "R$ " + text, attributes: [
             .font : UIFont.customFont(ofSize: 18, weight: .extraBold),
             .foregroundColor : UIColor.purpleDefault
         ])
         
-        attributedString.append(das)
+        attributedString.append(customPriceString)
         minimunPriceLabel.attributedText = attributedString
     }
     
@@ -118,10 +118,10 @@ extension InfoView: ViewCode {
 // MARK: - MyAbstractFactory
 extension InfoView: MyAbstractFactory {
     func getCellHeight() -> CGFloat {
-        400
+        310
     }
 }
 
 #Preview(traits: .sizeThatFitsLayout) {
-    ItemView()
+    InfoView()
 }

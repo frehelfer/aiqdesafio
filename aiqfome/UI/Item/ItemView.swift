@@ -15,6 +15,7 @@ class ItemView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
         tableView.isScrollEnabled = true
+        tableView.separatorStyle = .none
         return tableView
     }()
     
