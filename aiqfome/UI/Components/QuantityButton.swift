@@ -46,9 +46,8 @@ final class QuantityButton: UIView {
     
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureWith(number: 2)
+    init() {
+        super.init(frame: .zero)
         setupViewCode()
     }
     

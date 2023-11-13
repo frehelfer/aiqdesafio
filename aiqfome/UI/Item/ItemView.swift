@@ -34,6 +34,10 @@ class ItemView: UIView {
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
     }
+    
+    func reloadTableView() {
+        tableView.reloadData()
+    }
 }
 
 // MARK: - ViewCode

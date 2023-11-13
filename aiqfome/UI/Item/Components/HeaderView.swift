@@ -64,9 +64,9 @@ final class HeaderView: UIView {
     }()
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureWith(text: "Rua Mandaguari, 198")
+    init(address: String) {
+        super.init(frame: .zero)
+        configureWith(text: address)
         setupViewCode()
     }
     

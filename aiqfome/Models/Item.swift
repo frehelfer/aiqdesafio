@@ -30,15 +30,120 @@ struct Product {
     let oldPrice: Double? // 22.90
 }
 
-struct User {
-    let id: UUID
-    let address: String // Rua Mandaguari, 198
+extension Item {
+    func calculateMinimumPricePossible() -> Double {
+        var totalPrice = 0.0
+
+        for category in categoryList where category.isRequired {
+            if let minPriceProduct = category.products.min(by: { $0.price < $1.price }) {
+                totalPrice += minPriceProduct.price
+            }
+        }
+
+        return totalPrice
+    }
 }
 
-struct Cart {
-    let id: UUID
-    let cart: [Product]
-    let quantity: Int // 0 ou 1 ou 2
-    let comment: String
-    let totalPrice: Double
+extension Item {
+    static let mock = Item(
+        id: UUID(),
+        title: "Ceviche de salmão",
+        description: "salmão temperado com limão, cebola e pimenta",
+        imagePath: "/someImagePath.jpg",
+        categoryList: [
+            CategoryItem(
+                id: UUID(),
+                title: "qual o tamanho?",
+                maxOrderQuantity: 1,
+                isRequired: true,
+                products: [
+                    Product(
+                        id: UUID(),
+                        name: "médio",
+                        price: 19.90,
+                        oldPrice: 22.90
+                    ),
+                    Product(
+                        id: UUID(),
+                        name: "grande",
+                        price: 28.90,
+                        oldPrice: nil
+                    )
+                ]
+            ),
+            CategoryItem(
+                id: UUID(),
+                title: "vai querer bebida?",
+                maxOrderQuantity: nil,
+                isRequired: false,
+                products: [
+                    Product(
+                        id: UUID(),
+                        name: "coca-cola",
+                        price: 10,
+                        oldPrice: nil
+                    ),
+                    Product(
+                        id: UUID(),
+                        name: "suco prats laranja",
+                        price: 6,
+                        oldPrice: nil
+                    ),
+                    Product(
+                        id: UUID(),
+                        name: "água sem gás",
+                        price: 3,
+                        oldPrice: nil
+                    )
+                ]
+            ),
+            CategoryItem(
+                id: UUID(),
+                title: "precisa de talher?",
+                maxOrderQuantity: 1,
+                isRequired: false,
+                products: [
+                    Product(
+                        id: UUID(),
+                        name: "hashi",
+                        price: 0,
+                        oldPrice: nil
+                    ),
+                    Product(
+                        id: UUID(),
+                        name: "garfo e faca descartável",
+                        price: 1,
+                        oldPrice: nil
+                    )
+                ]
+            ),
+            CategoryItem(
+                id: UUID(),
+                title: "mais alguma coisa?",
+                maxOrderQuantity: 2,
+                isRequired: false,
+                products: [
+                    Product(
+                        id: UUID(),
+                        name: "biscoito da sorte",
+                        price: 2,
+                        oldPrice: nil
+                    ),
+                    Product(
+                        id: UUID(),
+                        name: "rolinho primavera",
+                        price: 8,
+                        oldPrice: nil
+                    )
+                ]
+            )
+        ]
+    )
 }
+
+// totalCartQuantity
+// if only one and required
+// if maxQuantity == nil
+// if only one and not required
+// if more then one and not required (square options)
+// comment

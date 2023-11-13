@@ -20,6 +20,7 @@ class ItemViewController: UIViewController {
     init(viewModel: ItemViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
+        viewModel.viewDelegate = self
     }
     
     required init?(coder: NSCoder) {
@@ -54,6 +55,14 @@ extension ItemViewController: UITableViewDataSource {
 extension ItemViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         viewModel.getCellHeightForRowAt(row: indexPath.row)
+    }
+}
+
+// MARK: - ItemViewModelDelegate
+extension ItemViewController: ItemViewModelDelegate {
+    func reloadTableView() {
+        itemView.reloadTableView()
+        print(#function)
     }
 }
 

@@ -24,6 +24,8 @@
 		8DFD48D12B01961A00B96F7F /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D02B01961A00B96F7F /* InfoView.swift */; };
 		8DFD48D52B01B96C00B96F7F /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D42B01B96C00B96F7F /* QuantityView.swift */; };
 		8DFD48D82B0247EE00B96F7F /* QuantityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D72B0247EE00B96F7F /* QuantityButton.swift */; };
+		8DFD48DA2B0257DB00B96F7F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D92B0257DB00B96F7F /* User.swift */; };
+		8DFD48DC2B0268A700B96F7F /* Cart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48DB2B0268A700B96F7F /* Cart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,6 +48,8 @@
 		8DFD48D02B01961A00B96F7F /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		8DFD48D42B01B96C00B96F7F /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
 		8DFD48D72B0247EE00B96F7F /* QuantityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityButton.swift; sourceTree = "<group>"; };
+		8DFD48D92B0257DB00B96F7F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		8DFD48DB2B0268A700B96F7F /* Cart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -152,6 +156,8 @@
 			isa = PBXGroup;
 			children = (
 				8DFD48CE2B018E0E00B96F7F /* Item.swift */,
+				8DFD48D92B0257DB00B96F7F /* User.swift */,
+				8DFD48DB2B0268A700B96F7F /* Cart.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -243,12 +249,14 @@
 				8DFD48D12B01961A00B96F7F /* InfoView.swift in Sources */,
 				8DF22D7B2B000BC10048DFBA /* ViewCode.swift in Sources */,
 				8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */,
+				8DFD48DA2B0257DB00B96F7F /* User.swift in Sources */,
 				8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */,
 				8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */,
 				8DFD48D82B0247EE00B96F7F /* QuantityButton.swift in Sources */,
 				8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */,
 				8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */,
 				8DFD48C32B0130CB00B96F7F /* HeaderView.swift in Sources */,
+				8DFD48DC2B0268A700B96F7F /* Cart.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

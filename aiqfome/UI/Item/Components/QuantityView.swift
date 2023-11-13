@@ -7,11 +7,19 @@
 
 import UIKit
 
+protocol QuantityViewProtocol: AnyObject {
+    func addButtonTapped()
+    func minusButtonTapped()
+    func plusButtonTapped()
+}
+
 final class QuantityView: UIView {
+    
+    weak var delegate: QuantityViewProtocol?
     
     // MARK: - Properties
     private lazy var stackView: UIStackView = {
-        let view = UIStackView(arrangedSubviews: [priceLabel, minimumPriceLabel])
+        let view = UIStackView(arrangedSubviews: [priceLabel])
         view.translatesAutoresizingMaskIntoConstraints = false
         view.axis = .vertical
         view.alignment = .leading
@@ -30,13 +38,12 @@ final class QuantityView: UIView {
         return label
     }()
     
-    private lazy var minimumPriceLabel: UILabel = {
+    private lazy var totalPriceLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 1
         label.textColor = .textSecondary
         label.font = .customFont(ofSize: 14, weight: .semiBold)
-        label.text = "total R$29,90"
         return label
     }()
     
@@ -61,6 +68,7 @@ final class QuantityView: UIView {
             .foregroundColor : UIColor.whiteDefault
         ])
         button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(addButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -70,11 +78,21 @@ final class QuantityView: UIView {
         return button
     }()
     
+    // button actions
+    @objc func addButtonTapped() {
+        delegate?.addButtonTapped()
+    }
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureWith(text: "29,90")
+    init(
+        delegate: QuantityViewProtocol,
+        totalPrice: Double,
+        orderQuantity: Int
+    ) {
+        self.delegate = delegate
+        super.init(frame: .zero)
+        configureTotalPriceLabel(value: totalPrice)
+        configureWith(orderQuantity: orderQuantity)
         setupViewCode()
     }
     
@@ -82,24 +100,37 @@ final class QuantityView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(text: String) {
-        configureMinimunPriceLabel(text: text)
-        addButton.layer.opacity = 0
+    private func configureWith(orderQuantity: Int) {
+        if orderQuantity == 0 {
+            stackView.removeArrangedSubview(totalPriceLabel)
+            addButton.layer.opacity = 1
+            quantityButton.layer.opacity = 0
+        } else {
+            stackView.addArrangedSubview(totalPriceLabel)
+            addButton.layer.opacity = 0
+            quantityButton.configureWith(number: orderQuantity)
+            quantityButton.layer.opacity = 1
+        }
     }
     
-    private func configureMinimunPriceLabel(text: String) {
+    private func configureTotalPriceLabel(value: Double) {
         let attributedString = NSMutableAttributedString(string: "total ")
         
-        let customPriceString = NSAttributedString(string: "R$ " + text, attributes: [
-            .font : UIFont.customFont(ofSize: 14, weight: .bold),
-            .foregroundColor : UIColor.textTertiary
-        ])
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = .current
         
-        attributedString.append(customPriceString)
-        minimumPriceLabel.attributedText = attributedString
+        if let formattedString = formatter.string(from: NSNumber(value: value)) {
+            
+            let customPriceString = NSAttributedString(string: "R$ " + formattedString, attributes: [
+                .font : UIFont.customFont(ofSize: 14, weight: .bold),
+                .foregroundColor : UIColor.textTertiary
+            ])
+            
+            attributedString.append(customPriceString)
+            totalPriceLabel.attributedText = attributedString
+        }
     }
-    
-    
     
 }
 
@@ -138,8 +169,4 @@ extension QuantityView: MyAbstractFactory {
     func getCellHeight() -> CGFloat {
         56
     }
-}
-
-#Preview(traits: .sizeThatFitsLayout) {
-    QuantityView()
 }

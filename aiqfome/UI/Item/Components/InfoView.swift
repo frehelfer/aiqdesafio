@@ -14,7 +14,6 @@ final class InfoView: UIView {
         let image = UIImageView()
         image.translatesAutoresizingMaskIntoConstraints = false
         image.contentMode = .scaleAspectFill
-        image.image = .ceviche
         return image
     }()
     
@@ -56,9 +55,17 @@ final class InfoView: UIView {
     }()
     
     // MARK: - Init
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        configureWith(text: "19,90")
+    init(
+        image: UIImage,
+        title: String,
+        description: String,
+        minimumPrice: Double
+    ) {
+        super.init(frame: .zero)
+        itemImage.image = image
+        titleLabel.text = title
+        configureMinimunPriceLabel(value: minimumPrice)
+        descriptionLabel.text = description
         setupViewCode()
     }
     
@@ -66,22 +73,23 @@ final class InfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func configureWith(text: String) {
-        titleLabel.text = "Ceviche de salmão"
-        configureMinimunPriceLabel(text: text)
-        descriptionLabel.text = "salmão temperado com limão, cebola e pimenta"
-    }
-    
-    private func configureMinimunPriceLabel(text: String) {
+    private func configureMinimunPriceLabel(value: Double) {
         let attributedString = NSMutableAttributedString(string: "a partir de  ")
         
-        let customPriceString = NSAttributedString(string: "R$ " + text, attributes: [
-            .font : UIFont.customFont(ofSize: 18, weight: .extraBold),
-            .foregroundColor : UIColor.purpleDefault
-        ])
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .currency
+        formatter.locale = .current
         
-        attributedString.append(customPriceString)
-        minimunPriceLabel.attributedText = attributedString
+        if let formattedString = formatter.string(from: NSNumber(value: value)) {
+            
+            let customPriceString = NSAttributedString(string: formattedString, attributes: [
+                .font : UIFont.customFont(ofSize: 18, weight: .extraBold),
+                .foregroundColor : UIColor.purpleDefault
+            ])
+            
+            attributedString.append(customPriceString)
+            minimunPriceLabel.attributedText = attributedString
+        }
     }
     
 }
@@ -120,8 +128,4 @@ extension InfoView: MyAbstractFactory {
     func getCellHeight() -> CGFloat {
         310
     }
-}
-
-#Preview(traits: .sizeThatFitsLayout) {
-    InfoView()
 }
