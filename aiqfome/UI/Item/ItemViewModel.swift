@@ -55,6 +55,8 @@ class ItemViewModel {
                 )
             )
         }
+        
+        customCells.append(FooterView())
     }
     
     func getNumberOfCells() -> Int {
