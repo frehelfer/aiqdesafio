@@ -16,7 +16,8 @@ class ItemViewModel {
     weak var viewDelegate: ItemViewModelDelegate?
     
     var customCells: [MyAbstractFactory] = [
-        HeaderView()
+        HeaderView(),
+        InfoView()
     ]
     
     init() {

@@ -11,6 +11,7 @@ struct Item {
     let id: UUID
     let title: String // Ceviche de salmão
     let description: String // salmão temperado com limão, cebola e pimenta
+    let imagePath: String // http path
     let categoryList: [CategoryItem]
 }
 
