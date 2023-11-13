@@ -43,6 +43,10 @@ class ItemViewModel {
                 orderQuantity: cart.quantity
             )
         ]
+        
+        item.categoryList.forEach { categoryItem in
+            customCells.append(DividerView())
+        }
     }
     
     func getNumberOfCells() -> Int {
@@ -61,6 +65,8 @@ class ItemViewModel {
 extension ItemViewModel: QuantityViewProtocol {
     func addButtonTapped() {
         cart.quantity = 1
+        createCustomCells(user: user, item: item)
+        viewDelegate?.reloadTableView()
     }
     
     func minusButtonTapped() {

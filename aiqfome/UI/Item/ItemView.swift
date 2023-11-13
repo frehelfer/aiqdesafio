@@ -16,6 +16,7 @@ class ItemView: UIView {
         tableView.register(MyTableViewCell.self, forCellReuseIdentifier: MyTableViewCell.identifier)
         tableView.isScrollEnabled = true
         tableView.separatorStyle = .none
+        tableView.rowHeight = UITableView.automaticDimension
         return tableView
     }()
     
