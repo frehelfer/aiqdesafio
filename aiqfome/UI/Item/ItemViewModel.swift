@@ -65,6 +65,18 @@ class ItemViewModel {
                     maxOrderQuantity: categoryItem.maxOrderQuantity
                 )
             )
+            
+            categoryItem.products.forEach { product in
+                customCells.append(
+                    ProductRowView(
+                        product: product,
+                        isRequired: categoryItem.isRequired,
+                        isSelected: cart.products.contains(where: { $0.id == product.id }),
+                        quantity: cart.products.filter({ $0.id == product.id }).count,
+                        type: product.getProductType(categoryItem: categoryItem)
+                    )
+                )
+            }
         }
         
         customCells.append(FooterView())
@@ -91,6 +103,7 @@ class ItemViewModel {
     }
 }
 
+// MARK: - QuantityViewProtocol
 extension ItemViewModel: QuantityViewProtocol {
     func addButtonTapped() {
         cart.quantity = 1

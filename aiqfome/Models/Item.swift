@@ -23,13 +23,6 @@ struct CategoryItem {
     let products: [Product]
 }
 
-struct Product {
-    let id: UUID
-    let name: String // médio
-    let price: Double // 19.90
-    let oldPrice: Double? // 22.90
-}
-
 extension Item {
     func calculateMinimumPricePossible() -> Double {
         var totalPrice = 0.0
