@@ -23,6 +23,7 @@
 		8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48CE2B018E0E00B96F7F /* Item.swift */; };
 		8DFD48D12B01961A00B96F7F /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D02B01961A00B96F7F /* InfoView.swift */; };
 		8DFD48D52B01B96C00B96F7F /* QuantityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D42B01B96C00B96F7F /* QuantityView.swift */; };
+		8DFD48D82B0247EE00B96F7F /* QuantityButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DFD48D72B0247EE00B96F7F /* QuantityButton.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		8DFD48CE2B018E0E00B96F7F /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		8DFD48D02B01961A00B96F7F /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		8DFD48D42B01B96C00B96F7F /* QuantityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityView.swift; sourceTree = "<group>"; };
+		8DFD48D72B0247EE00B96F7F /* QuantityButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuantityButton.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		8DFD48D62B01BCE300B96F7F /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8DFD48D72B0247EE00B96F7F /* QuantityButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				8DFD48C12B012CCE00B96F7F /* MyTableViewCell.swift in Sources */,
 				8DFD48CF2B018E0E00B96F7F /* Item.swift in Sources */,
 				8DFD48CC2B016CEC00B96F7F /* MyAbstractFactory.swift in Sources */,
+				8DFD48D82B0247EE00B96F7F /* QuantityButton.swift in Sources */,
 				8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */,
 				8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */,
 				8DFD48C32B0130CB00B96F7F /* HeaderView.swift in Sources */,

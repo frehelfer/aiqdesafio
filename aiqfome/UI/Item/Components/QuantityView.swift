@@ -40,6 +40,7 @@ final class QuantityView: UIView {
         return label
     }()
     
+    // right
     private lazy var addButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -60,7 +61,12 @@ final class QuantityView: UIView {
             .foregroundColor : UIColor.whiteDefault
         ])
         button.setAttributedTitle(attributedString, for: .normal)
-        
+        return button
+    }()
+    
+    private lazy var quantityButton: QuantityButton = {
+        let button = QuantityButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
@@ -78,6 +84,7 @@ final class QuantityView: UIView {
     
     func configureWith(text: String) {
         configureMinimunPriceLabel(text: text)
+        addButton.layer.opacity = 0
     }
     
     private func configureMinimunPriceLabel(text: String) {
@@ -92,6 +99,8 @@ final class QuantityView: UIView {
         minimumPriceLabel.attributedText = attributedString
     }
     
+    
+    
 }
 
 // MARK: - ViewCode
@@ -99,18 +108,22 @@ extension QuantityView: ViewCode {
     func addSubviews() {
         addSubview(stackView)
         addSubview(addButton)
+        addSubview(quantityButton)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
             stackView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            stackView.trailingAnchor.constraint(equalTo: addButton.leadingAnchor, constant: -16),
+            stackView.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -50),
             stackView.centerYAnchor.constraint(equalTo: centerYAnchor),
             
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             addButton.heightAnchor.constraint(equalToConstant: 40),
             addButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            
+            quantityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
+            quantityButton.centerYAnchor.constraint(equalTo: centerYAnchor),
             
         ])
     }
