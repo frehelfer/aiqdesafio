@@ -9,20 +9,31 @@ import UIKit
 
 protocol ItemViewModelDelegate: AnyObject {
     func reloadTableView()
+    func shouldDisplayTicketButton(displayButton: Bool)
 }
 
 class ItemViewModel {
     
     weak var viewDelegate: ItemViewModelDelegate?
     
-    let user: User
-    let item: Item
-    var customCells: [MyAbstractFactory] = []
-    var cart: Cart = Cart(id: UUID(), products: [], quantity: 0, comment: "")
+    private let user: User
+    private let item: Item
+    private var cart: Cart {
+        didSet {
+            updateTicketButton()
+        }
+    }
+        
+    private var customCells: [MyAbstractFactory] = []
     
-    init(user: User = User.mock, item: Item = Item.mock) {
+    init(
+        user: User = User.mock,
+        item: Item = Item.mock,
+        cart: Cart = Cart(id: UUID(), products: [], quantity: 0, comment: "")
+    ) {
         self.user = user
         self.item = item
+        self.cart = cart
         createCustomCells(user: user, item: item)
     }
     
@@ -57,6 +68,14 @@ class ItemViewModel {
         }
         
         customCells.append(FooterView())
+    }
+    
+    private func updateTicketButton() {
+        if cart.quantity > 0 {
+            viewDelegate?.shouldDisplayTicketButton(displayButton: true)
+        } else {
+            viewDelegate?.shouldDisplayTicketButton(displayButton: false)
+        }
     }
     
     func getNumberOfCells() -> Int {

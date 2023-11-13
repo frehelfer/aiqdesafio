@@ -60,9 +60,14 @@ extension ItemViewController: UITableViewDelegate {
 
 // MARK: - ItemViewModelDelegate
 extension ItemViewController: ItemViewModelDelegate {
+   
     func reloadTableView() {
         itemView.reloadTableView()
         print(#function)
+    }
+    
+    func shouldDisplayTicketButton(displayButton: Bool) {
+        itemView.shouldDisplayTicketButton(displayButton: displayButton)
     }
 }
 
