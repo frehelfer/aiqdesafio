@@ -103,6 +103,12 @@ extension QuantityButton: ViewCode {
             stackView.topAnchor.constraint(equalTo: topAnchor),
             stackView.bottomAnchor.constraint(equalTo: bottomAnchor),
             
+            minusButton.heightAnchor.constraint(equalToConstant: 24),
+            minusButton.widthAnchor.constraint(equalToConstant: 24),
+            
+            plusButton.heightAnchor.constraint(equalToConstant: 24),
+            plusButton.widthAnchor.constraint(equalToConstant: 24),
+            
             numberLabel.heightAnchor.constraint(equalToConstant: 32),
             numberLabel.widthAnchor.constraint(equalToConstant: 28),
             

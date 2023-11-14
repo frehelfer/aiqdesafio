@@ -35,6 +35,16 @@ class ProductRowView: UIView, MyAbstractFactory {
         return view
     }()
     
+    private lazy var buttonStack: UIStackView = {
+        let view = UIStackView(arrangedSubviews: [])
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.axis = .horizontal
+        view.alignment = .leading
+        view.spacing = 4
+        view.distribution = .fill
+        return view
+    }()
+    
     private lazy var selectorButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -66,9 +76,11 @@ class ProductRowView: UIView, MyAbstractFactory {
         return button
     }()
     
-    private lazy var baseView: UIView = {
-        let view = UIView()
+    private lazy var dollarSignIcon: UIImageView = {
+        let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false
+        view.image = .money
+        view.contentMode = .scaleAspectFill
         return view
     }()
     
@@ -77,6 +89,9 @@ class ProductRowView: UIView, MyAbstractFactory {
     }
     
     // MARK: - Init
+    
+    private var horizontalStackLeadingConstraint: NSLayoutConstraint!
+    
     init(
         delegate: ProductRowViewDelegate,
         product: Product,
@@ -88,24 +103,24 @@ class ProductRowView: UIView, MyAbstractFactory {
         self.delegate = delegate
         self.product = product
         super.init(frame: .zero)
-        productName.text = product.name
-        configurePriceLabel(price: product.price, oldPrice: product.oldPrice, isRequired: isRequired)
-        configureSelector(type: type, isSelected: isSelected, quantity: quantity)
-        
         setupViewCode()
+        
+        productName.text = product.name
+        configureSelector(type: type, isSelected: isSelected, quantity: quantity)
+        configurePriceLabel(price: product.price, oldPrice: product.oldPrice, isRequired: isRequired)
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // funciona, mas ta feio, arrumar depois
+    // funciona, mas ta feio, arrumar!!
     private func configurePriceLabel(price: Double, oldPrice: Double?, isRequired: Bool) {
         let formatter = NumberFormatter()
         formatter.numberStyle = .currency
         formatter.locale = .current
         
-        // se tiver desconto, apresenta uma string custom
+        // se tiver desconto, apresenta uma string custom e coloca o dollar ICON
         if
             let oldPrice,
             let formattedOldePrice = formatter.string(from: NSNumber(value: oldPrice)) {
@@ -130,6 +145,8 @@ class ProductRowView: UIView, MyAbstractFactory {
                 priceLabel.attributedText = attributedString
             }
             
+            buttonStack.addArrangedSubview(dollarSignIcon)
+            
         // se não, apresenta o valor Roxo bold, se não for obrigatorio, coloca um + na frente
         } else {
             if price > 0 {
@@ -144,14 +161,18 @@ class ProductRowView: UIView, MyAbstractFactory {
     private func configureSelector(type: SelectorType, isSelected: Bool, quantity: Int) {
         switch type {
         case .radio:
+            buttonStack.addArrangedSubview(selectorButton)
             selectorButton.setImage(isSelected ? .radioOn : .radioOff, for: .normal)
             selectorButton.isHidden = false
             quantityButton.isHidden = true
         case .select:
+            buttonStack.addArrangedSubview(selectorButton)
             selectorButton.setImage(isSelected ? .selectOn : .selectOff, for: .normal)
             selectorButton.isHidden = false
             quantityButton.isHidden = true
         case .quantity:
+            buttonStack.addArrangedSubview(quantityButton)
+            horizontalStackLeadingConstraint.constant = 10
             quantityButton.configureWith(number: quantity)
             selectorButton.isHidden = true
             quantityButton.isHidden = false
@@ -165,35 +186,31 @@ class ProductRowView: UIView, MyAbstractFactory {
 // MARK: - ViewCode
 extension ProductRowView: ViewCode {
     func addSubviews() {
-        addSubview(baseView)
-        baseView.addSubview(quantityButton)
-        baseView.addSubview(selectorButton)
+        addSubview(buttonStack)
         addSubview(horizontalStack)
     }
     
     func setupConstraints() {
+        
+        horizontalStackLeadingConstraint = horizontalStack.leadingAnchor.constraint(equalTo: buttonStack.trailingAnchor, constant: 4)
+        horizontalStackLeadingConstraint.isActive = true
+        
         NSLayoutConstraint.activate([
             
-            baseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
-            baseView.centerYAnchor.constraint(equalTo: horizontalStack.centerYAnchor),
-            
-            // quantityButton
-            quantityButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
-            quantityButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-            quantityButton.topAnchor.constraint(equalTo: baseView.topAnchor),
-            quantityButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
-//            quantityButton.widthAnchor.constraint(equalToConstant: 96),
-//            quantityButton.heightAnchor.constraint(equalToConstant: 28),
+            // buttonStack
+            buttonStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            buttonStack.topAnchor.constraint(equalTo: horizontalStack.topAnchor),
+            buttonStack.bottomAnchor.constraint(equalTo: horizontalStack.bottomAnchor),
             
             // selectorImage
-            selectorButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
-            selectorButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
-            selectorButton.topAnchor.constraint(equalTo: baseView.topAnchor),
-            selectorButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
+            selectorButton.heightAnchor.constraint(equalToConstant: 24),
+            selectorButton.widthAnchor.constraint(equalToConstant: 24),
             
+            // dollarSignIcon
+            dollarSignIcon.heightAnchor.constraint(equalToConstant: 24),
+            dollarSignIcon.widthAnchor.constraint(equalToConstant: 24),
             
             // horizontalStack
-            horizontalStack.leadingAnchor.constraint(equalTo: baseView.trailingAnchor, constant: 4),
             horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             horizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
