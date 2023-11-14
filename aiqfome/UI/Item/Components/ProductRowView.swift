@@ -48,7 +48,6 @@ class ProductRowView: UIView, MyAbstractFactory {
     private lazy var selectorButton: UIButton = {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(selectorButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -82,6 +81,13 @@ class ProductRowView: UIView, MyAbstractFactory {
         view.image = .money
         view.contentMode = .scaleAspectFill
         return view
+    }()
+    
+    private lazy var rowTapButtonArea: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(selectorButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     @objc private func selectorButtonTapped() {
@@ -175,6 +181,7 @@ class ProductRowView: UIView, MyAbstractFactory {
             horizontalStackLeadingConstraint.constant = 10
             quantityButton.configureWith(number: quantity)
             selectorButton.isHidden = true
+            rowTapButtonArea.isHidden = true
             quantityButton.isHidden = false
         }
     }
@@ -188,6 +195,7 @@ extension ProductRowView: ViewCode {
     func addSubviews() {
         addSubview(buttonStack)
         addSubview(horizontalStack)
+        addSubview(rowTapButtonArea)
     }
     
     func setupConstraints() {
@@ -214,6 +222,10 @@ extension ProductRowView: ViewCode {
             horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             horizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
+            
+            // rowTapButtonArea
+            rowTapButtonArea.leadingAnchor.constraint(equalTo: leadingAnchor),
+            rowTapButtonArea.trailingAnchor.constraint(equalTo: trailingAnchor),
             
         ])
     }
