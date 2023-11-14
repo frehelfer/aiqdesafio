@@ -59,7 +59,7 @@ class ProductRowView: UIView, MyAbstractFactory {
     }()
     
     private lazy var quantityButton: QuantityButton = {
-        let button = QuantityButton()
+        let button = QuantityButton(delegate: self)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
@@ -202,4 +202,15 @@ extension ProductRowView: ViewCode {
     func setupStyle() {
         backgroundColor = .whiteDefault
     }
+}
+
+// MARK: - TitleQuantityButtonProtocol
+extension ProductRowView: QuantityButtonProtocol {
+   func plusButtonTapped() {
+//       delegate?.plusButtonTapped()
+   }
+   
+   func minusButtonTapped() {
+//       delegate?.minusButtonTapped()
+   }
 }

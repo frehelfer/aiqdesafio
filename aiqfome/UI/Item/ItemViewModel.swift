@@ -38,7 +38,7 @@ class ItemViewModel {
     }
     
     private func createCustomCells(user: User, item: Item) {
-        self.customCells = [
+        customCells = [
             HeaderView(
                 address: user.address
             ),
@@ -103,18 +103,16 @@ class ItemViewModel {
 // MARK: - QuantityViewProtocol
 extension ItemViewModel: QuantityViewProtocol {
     
-    func addButtonTapped() {
-        cart.quantity = 1
+    func minusButtonTapped() {
+        cart.quantity -= 1
         createCustomCells(user: user, item: item)
         viewDelegate?.reloadTableView()
     }
     
-    func minusButtonTapped() {
-        
-    }
-    
     func plusButtonTapped() {
-        
+        cart.quantity += 1
+        createCustomCells(user: user, item: item)
+        viewDelegate?.reloadTableView()
     }
 }
 

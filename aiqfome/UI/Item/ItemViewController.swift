@@ -52,11 +52,7 @@ extension ItemViewController: UITableViewDataSource {
 }
 
 // MARK: - UITableViewDelegate
-extension ItemViewController: UITableViewDelegate {
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        viewModel.getCellHeightForRowAt(row: indexPath.row)
-//    }
-}
+extension ItemViewController: UITableViewDelegate {}
 
 // MARK: - ItemViewModelDelegate
 extension ItemViewController: ItemViewModelDelegate {

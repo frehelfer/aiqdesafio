@@ -8,7 +8,6 @@
 import UIKit
 
 protocol QuantityViewProtocol: AnyObject {
-    func addButtonTapped()
     func minusButtonTapped()
     func plusButtonTapped()
 }
@@ -73,14 +72,14 @@ final class QuantityView: UIView, MyAbstractFactory {
     }()
     
     private lazy var quantityButton: QuantityButton = {
-        let button = QuantityButton()
+        let button = QuantityButton(delegate: self)
         button.translatesAutoresizingMaskIntoConstraints = false
         return button
     }()
     
     // button actions
-    @objc func addButtonTapped() {
-        delegate?.addButtonTapped()
+    @objc private func addButtonTapped() {
+        delegate?.plusButtonTapped()
     }
     
     // MARK: - Init
@@ -162,5 +161,16 @@ extension QuantityView: ViewCode {
     
     func setupStyle() {
         backgroundColor = .whiteDefault
+    }
+}
+
+ // MARK: - TitleQuantityButtonProtocol
+extension QuantityView: QuantityButtonProtocol {
+    func plusButtonTapped() {
+        delegate?.plusButtonTapped()
+    }
+    
+    func minusButtonTapped() {
+        delegate?.minusButtonTapped()
     }
 }

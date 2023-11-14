@@ -7,7 +7,14 @@
 
 import UIKit
 
+protocol QuantityButtonProtocol: AnyObject {
+    func plusButtonTapped()
+    func minusButtonTapped()
+}
+
 final class QuantityButton: UIView {
+    
+    weak var delegate: QuantityButtonProtocol?
     
     // MARK: - Properties
     private lazy var stackView: UIStackView = {
@@ -34,6 +41,7 @@ final class QuantityButton: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.minus, for: .normal)
+        button.addTarget(self, action: #selector(minusButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -41,12 +49,21 @@ final class QuantityButton: UIView {
         let button = UIButton()
         button.translatesAutoresizingMaskIntoConstraints = false
         button.setImage(.plus, for: .normal)
+        button.addTarget(self, action: #selector(plusButtonTapped), for: .touchUpInside)
         return button
     }()
     
+    @objc private func plusButtonTapped() {
+        delegate?.plusButtonTapped()
+    }
+    
+    @objc private func minusButtonTapped() {
+        delegate?.minusButtonTapped()
+    }
     
     // MARK: - Init
-    init() {
+    init(delegate: QuantityButtonProtocol) {
+        self.delegate = delegate
         super.init(frame: .zero)
         setupViewCode()
     }
@@ -88,8 +105,6 @@ extension QuantityButton: ViewCode {
             
             numberLabel.heightAnchor.constraint(equalToConstant: 32),
             numberLabel.widthAnchor.constraint(equalToConstant: 28),
-//            numberLabel.topAnchor.constraint(equalTo: stackView.topAnchor),
-//            numberLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             
         ])
     }
