@@ -59,7 +59,6 @@ extension ItemViewController: ItemViewModelDelegate {
    
     func reloadTableView() {
         itemView.reloadTableView()
-        print(#function)
     }
     
     func shouldDisplayTicketButton(displayButton: Bool) {

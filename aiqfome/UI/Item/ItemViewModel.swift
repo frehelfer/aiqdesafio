@@ -132,7 +132,6 @@ extension ItemViewModel: ProductRowViewDelegate {
     
     // Sorry for this 🫣🥺, but hey, it's better to be working than not. I will fix this when I have more time 🥳
     func selectorButtonTapped(productRowView: ProductRowView, product: Product) {
-        print(#function)
         
         // remove the product if it's already in the cart
         if let index = cart.products.firstIndex(where: { $0.id == product.id }) {
@@ -170,7 +169,6 @@ extension ItemViewModel: ProductRowViewDelegate {
     }
     
     func plusButtonTapped(product: Product) {
-        print(#function)
         
         if cart.quantity == 0 {
             cart.quantity = 1
@@ -181,7 +179,6 @@ extension ItemViewModel: ProductRowViewDelegate {
     }
     
     func minusButtonTapped(product: Product) {
-        print(#function)
         if let index = cart.products.firstIndex(where: { $0.id == product.id }) {
             cart.products.remove(at: index)
             updateUI()
@@ -193,7 +190,6 @@ extension ItemViewModel: ProductRowViewDelegate {
 extension ItemViewModel: CommentViewDelegate {
     
     func addComment(text: String) {
-        print(#function)
         cart.comment = text
         updateUI()
     }

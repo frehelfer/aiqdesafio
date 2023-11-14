@@ -34,7 +34,6 @@ class ItemView: UIView {
     }()
     
     @objc private func ticketButtonTapped() {
-        print(#function)
     }
     
     // MARK: - Init
