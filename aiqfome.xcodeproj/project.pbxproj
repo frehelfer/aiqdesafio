@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D1B32D22B031642003E8A42 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B32D12B031642003E8A42 /* CommentView.swift */; };
+		8D1B32D42B031D8D003E8A42 /* KeyboardObserving.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1B32D32B031D8D003E8A42 /* KeyboardObserving.swift */; };
 		8DC9A35B2B029241005AE6C8 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9A35A2B029241005AE6C8 /* FooterView.swift */; };
 		8DC9A35D2B02A304005AE6C8 /* Product.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC9A35C2B02A304005AE6C8 /* Product.swift */; };
 		8DF22D612B00083E0048DFBA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DF22D602B00083E0048DFBA /* AppDelegate.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8D1B32D12B031642003E8A42 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		8D1B32D32B031D8D003E8A42 /* KeyboardObserving.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserving.swift; sourceTree = "<group>"; };
 		8DC9A35A2B029241005AE6C8 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		8DC9A35C2B02A304005AE6C8 /* Product.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Product.swift; sourceTree = "<group>"; };
 		8DF22D5D2B00083E0048DFBA /* aiqfome.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = aiqfome.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -122,6 +126,7 @@
 				8DF22D7A2B000BC10048DFBA /* ViewCode.swift */,
 				8DFD48CB2B016CEC00B96F7F /* MyAbstractFactory.swift */,
 				8DFD48C02B012CCE00B96F7F /* MyTableViewCell.swift */,
+				8D1B32D32B031D8D003E8A42 /* KeyboardObserving.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -145,6 +150,7 @@
 				8DFD48DF2B0284EC00B96F7F /* CategoryHeaderView.swift */,
 				8DFD48E12B02913500B96F7F /* ProductRowView.swift */,
 				8DC9A35A2B029241005AE6C8 /* FooterView.swift */,
+				8D1B32D12B031642003E8A42 /* CommentView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -275,7 +281,9 @@
 				8DF22D7F2B00104C0048DFBA /* ItemViewModel.swift in Sources */,
 				8DFD48CA2B01693300B96F7F /* UIFont+Extensions.swift in Sources */,
 				8DFD48C32B0130CB00B96F7F /* HeaderView.swift in Sources */,
+				8D1B32D42B031D8D003E8A42 /* KeyboardObserving.swift in Sources */,
 				8DFD48DC2B0268A700B96F7F /* Cart.swift in Sources */,
+				8D1B32D22B031642003E8A42 /* CommentView.swift in Sources */,
 				8DC9A35D2B02A304005AE6C8 /* Product.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -80,6 +80,8 @@ class ItemViewModel {
             }
         }
         
+        customCells.append(DividerView())
+        customCells.append(CommentView(delegate: self, text: cart.comment))
         customCells.append(FooterView())
     }
     
@@ -184,5 +186,15 @@ extension ItemViewModel: ProductRowViewDelegate {
             cart.products.remove(at: index)
             updateUI()
         }
+    }
+}
+
+// MARK: - CommentViewDelegate
+extension ItemViewModel: CommentViewDelegate {
+    
+    func addComment(text: String) {
+        print(#function)
+        cart.comment = text
+        updateUI()
     }
 }
