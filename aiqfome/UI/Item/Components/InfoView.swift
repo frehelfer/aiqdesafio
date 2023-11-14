@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class InfoView: UIView {
+final class InfoView: UIView, MyAbstractFactory {
     
     // MARK: - Properties
     private lazy var itemImage: UIImageView = {
@@ -114,18 +114,12 @@ extension InfoView: ViewCode {
             infoStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             infoStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             infoStack.topAnchor.constraint(equalTo: itemImage.bottomAnchor, constant: 16),
+            infoStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
         ])
     }
     
     func setupStyle() {
         backgroundColor = .whiteDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension InfoView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        310
     }
 }

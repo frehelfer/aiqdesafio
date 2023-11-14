@@ -9,11 +9,11 @@ import Foundation
 
 import UIKit
 
-class DividerView: UIView {
+class DividerView: UIView, MyAbstractFactory {
     
     private enum Params {
         static let lineHeight: CGFloat = 4
-        static let verticalPadding: CGFloat = 16
+        static let verticalPadding: CGFloat = 8
     }
     
     // MARK: - Properties
@@ -68,12 +68,5 @@ extension DividerView: ViewCode {
     
     func setupStyle() {
         backgroundColor = .whiteDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension DividerView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        Params.lineHeight + Params.verticalPadding * 2
     }
 }

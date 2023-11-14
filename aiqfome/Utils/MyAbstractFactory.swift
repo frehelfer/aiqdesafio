@@ -9,7 +9,6 @@ import UIKit
 
 protocol MyAbstractFactory {
     func createCell() -> UIView
-    func getCellHeight() -> CGFloat
 }
 
 extension MyAbstractFactory where Self: UIView {

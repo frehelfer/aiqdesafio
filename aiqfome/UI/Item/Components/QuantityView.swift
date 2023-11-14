@@ -13,7 +13,7 @@ protocol QuantityViewProtocol: AnyObject {
     func plusButtonTapped()
 }
 
-final class QuantityView: UIView {
+final class QuantityView: UIView, MyAbstractFactory {
     
     weak var delegate: QuantityViewProtocol?
     
@@ -103,13 +103,13 @@ final class QuantityView: UIView {
     private func configureWith(orderQuantity: Int) {
         if orderQuantity == 0 {
             stackView.removeArrangedSubview(totalPriceLabel)
-            addButton.layer.opacity = 1
-            quantityButton.layer.opacity = 0
+            addButton.isHidden = false
+            quantityButton.isHidden = true
         } else {
             stackView.addArrangedSubview(totalPriceLabel)
-            addButton.layer.opacity = 0
+            addButton.isHidden = true
             quantityButton.configureWith(number: orderQuantity)
-            quantityButton.layer.opacity = 1
+            quantityButton.isHidden = false
         }
     }
     
@@ -151,7 +151,8 @@ extension QuantityView: ViewCode {
             
             addButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             addButton.heightAnchor.constraint(equalToConstant: 40),
-            addButton.centerYAnchor.constraint(equalTo: centerYAnchor),
+            addButton.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            addButton.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             quantityButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
             quantityButton.centerYAnchor.constraint(equalTo: centerYAnchor),
@@ -161,12 +162,5 @@ extension QuantityView: ViewCode {
     
     func setupStyle() {
         backgroundColor = .whiteDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension QuantityView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        56
     }
 }

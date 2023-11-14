@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CategoryHeaderView: UIView {
+class CategoryHeaderView: UIView, MyAbstractFactory {
     
     // MARK: - Properties
     private lazy var horizontalStack: UIStackView = {
@@ -67,6 +67,8 @@ class CategoryHeaderView: UIView {
         return label
     }()
     
+    
+    
     // MARK: - Init
     init(
         categoryTitle: String,
@@ -107,8 +109,8 @@ extension CategoryHeaderView: ViewCode {
             // horizontalStack
             horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            horizontalStack.topAnchor.constraint(equalTo: topAnchor),
-            horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            horizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             
             // isRequiredLabel
             isRequiredLabel.leadingAnchor.constraint(equalTo: isRequiredView.leadingAnchor, constant: 8),
@@ -121,12 +123,5 @@ extension CategoryHeaderView: ViewCode {
     
     func setupStyle() {
         backgroundColor = .whiteDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension CategoryHeaderView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        56
     }
 }

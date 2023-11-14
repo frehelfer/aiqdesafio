@@ -7,9 +7,16 @@
 
 import UIKit
 
-class FooterView: UIView {
+class FooterView: UIView, MyAbstractFactory {
     
     // MARK: - Properties
+    private lazy var blankView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .whiteDefault
+        return view
+    }()
+    
     private lazy var vStack: UIStackView = {
         let view = UIStackView(arrangedSubviews: [loveLabel, dataLabel])
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -55,28 +62,28 @@ class FooterView: UIView {
 // MARK: - ViewCode
 extension FooterView: ViewCode {
     func addSubviews() {
+        addSubview(blankView)
         addSubview(vStack)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
+            // blankView
+            blankView.leadingAnchor.constraint(equalTo: leadingAnchor),
+            blankView.trailingAnchor.constraint(equalTo: trailingAnchor),
+            blankView.topAnchor.constraint(equalTo: topAnchor),
+            blankView.heightAnchor.constraint(equalToConstant: 39),
+            
             // vStack
             vStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             vStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            vStack.topAnchor.constraint(equalTo: topAnchor, constant: 24),
+            vStack.topAnchor.constraint(equalTo: blankView.bottomAnchor, constant: 24),
             vStack.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -24),
         ])
     }
     
     func setupStyle() {
         backgroundColor = .grayDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension FooterView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        119
     }
 }

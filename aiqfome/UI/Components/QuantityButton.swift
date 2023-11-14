@@ -88,6 +88,8 @@ extension QuantityButton: ViewCode {
             
             numberLabel.heightAnchor.constraint(equalToConstant: 32),
             numberLabel.widthAnchor.constraint(equalToConstant: 28),
+//            numberLabel.topAnchor.constraint(equalTo: stackView.topAnchor),
+//            numberLabel.bottomAnchor.constraint(equalTo: stackView.bottomAnchor),
             
         ])
     }

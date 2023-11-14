@@ -13,7 +13,14 @@ enum SelectorType {
     case quantity
 }
 
-class ProductRowView: UIView {
+protocol ProductRowViewDelegate: AnyObject {
+    func selectorButtonTapped(productRowView: ProductRowView, product: Product)
+}
+
+class ProductRowView: UIView, MyAbstractFactory {
+    
+    weak var delegate: ProductRowViewDelegate?
+    let product: Product
     
     // MARK: - Properties
     private lazy var horizontalStack: UIStackView = {
@@ -26,10 +33,11 @@ class ProductRowView: UIView {
         return view
     }()
     
-    private lazy var selectorImage: UIImageView = {
-        let image = UIImageView()
-        image.translatesAutoresizingMaskIntoConstraints = false
-        return image
+    private lazy var selectorButton: UIButton = {
+        let button = UIButton()
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.addTarget(self, action: #selector(selectorButtonTapped), for: .touchUpInside)
+        return button
     }()
     
     private lazy var productName: UILabel = {
@@ -53,18 +61,30 @@ class ProductRowView: UIView {
     private lazy var quantityButton: QuantityButton = {
         let button = QuantityButton()
         button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.opacity = 1
         return button
     }()
     
+    private lazy var baseView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        return view
+    }()
+    
+    @objc private func selectorButtonTapped() {
+        print(#function)
+        delegate?.selectorButtonTapped(productRowView: self, product: product)
+    }
+    
     // MARK: - Init
     init(
+        delegate: ProductRowViewDelegate,
         product: Product,
         isRequired: Bool,
         isSelected: Bool,
         quantity: Int,
         type: SelectorType
     ) {
+        self.product = product
         super.init(frame: .zero)
         productName.text = product.name
         configurePriceLabel(price: product.price, oldPrice: product.oldPrice, isRequired: isRequired)
@@ -122,41 +142,64 @@ class ProductRowView: UIView {
     private func configureSelector(type: SelectorType, isSelected: Bool, quantity: Int) {
         switch type {
         case .radio:
-            selectorImage.image = isSelected ? .radioOn : .radioOff
+            selectorButton.setImage(isSelected ? .radioOn : .radioOff, for: .normal)
+            selectorButton.isHidden = false
+            quantityButton.isHidden = true
         case .select:
-            selectorImage.image = isSelected ? .selectOn : .selectOff
+            selectorButton.setImage(isSelected ? .selectOn : .selectOff, for: .normal)
+            selectorButton.isHidden = false
+            quantityButton.isHidden = true
         case .quantity:
             quantityButton.configureWith(number: quantity)
+            selectorButton.isHidden = true
+            quantityButton.isHidden = false
         }
     }
+    
+    // MARK: - Internal actions
+    
 }
 
 // MARK: - ViewCode
 extension ProductRowView: ViewCode {
     func addSubviews() {
+        addSubview(baseView)
+        baseView.addSubview(quantityButton)
+        baseView.addSubview(selectorButton)
         addSubview(horizontalStack)
     }
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
             
+            baseView.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            baseView.centerYAnchor.constraint(equalTo: horizontalStack.centerYAnchor),
+            
+            // quantityButton
+            quantityButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
+            quantityButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
+            quantityButton.topAnchor.constraint(equalTo: baseView.topAnchor),
+            quantityButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
+//            quantityButton.widthAnchor.constraint(equalToConstant: 96),
+//            quantityButton.heightAnchor.constraint(equalToConstant: 28),
+            
+            // selectorImage
+            selectorButton.leadingAnchor.constraint(equalTo: baseView.leadingAnchor),
+            selectorButton.trailingAnchor.constraint(equalTo: baseView.trailingAnchor),
+            selectorButton.topAnchor.constraint(equalTo: baseView.topAnchor),
+            selectorButton.bottomAnchor.constraint(equalTo: baseView.bottomAnchor),
+            
+            
             // horizontalStack
-            horizontalStack.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
+            horizontalStack.leadingAnchor.constraint(equalTo: baseView.trailingAnchor, constant: 4),
             horizontalStack.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
-            horizontalStack.topAnchor.constraint(equalTo: topAnchor),
-            horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
+            horizontalStack.topAnchor.constraint(equalTo: topAnchor, constant: 8),
+            horizontalStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -8),
             
         ])
     }
     
     func setupStyle() {
         backgroundColor = .whiteDefault
-    }
-}
-
-// MARK: - MyAbstractFactory
-extension ProductRowView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        44
     }
 }

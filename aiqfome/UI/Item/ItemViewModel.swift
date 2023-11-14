@@ -69,6 +69,7 @@ class ItemViewModel {
             categoryItem.products.forEach { product in
                 customCells.append(
                     ProductRowView(
+                        delegate: self,
                         product: product,
                         isRequired: categoryItem.isRequired,
                         isSelected: cart.products.contains(where: { $0.id == product.id }),
@@ -97,14 +98,11 @@ class ItemViewModel {
     func getCellViewForRowAt(row: Int) -> UIView {
         customCells[row].createCell()
     }
-    
-    func getCellHeightForRowAt(row: Int) -> CGFloat {
-        customCells[row].getCellHeight()
-    }
 }
 
 // MARK: - QuantityViewProtocol
 extension ItemViewModel: QuantityViewProtocol {
+    
     func addButtonTapped() {
         cart.quantity = 1
         createCustomCells(user: user, item: item)
@@ -117,5 +115,16 @@ extension ItemViewModel: QuantityViewProtocol {
     
     func plusButtonTapped() {
         
+    }
+}
+
+// MARK: - ProductRowViewDelegate
+extension ItemViewModel: ProductRowViewDelegate {
+    
+    func selectorButtonTapped(productRowView: ProductRowView, product: Product) {
+        print(#function)
+        cart.products.append(product)
+        createCustomCells(user: user, item: item)
+        viewDelegate?.reloadTableView()
     }
 }

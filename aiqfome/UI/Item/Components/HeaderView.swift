@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class HeaderView: UIView {
+final class HeaderView: UIView, MyAbstractFactory {
     
     // MARK: - Properties
     private lazy var aiqLogo: UIImageView = {
@@ -110,7 +110,8 @@ extension HeaderView: ViewCode {
             // addressStack
             addressStack.leadingAnchor.constraint(equalTo: locationIcon.trailingAnchor, constant: 10),
             addressStack.trailingAnchor.constraint(equalTo: profileIcon.leadingAnchor, constant: -24),
-            addressStack.centerYAnchor.constraint(equalTo: centerYAnchor),
+            addressStack.topAnchor.constraint(equalTo: topAnchor, constant: 16),
+            addressStack.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -16),
             
             // profileIcon
             profileIcon.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -16),
@@ -121,15 +122,4 @@ extension HeaderView: ViewCode {
     func setupStyle() {
         backgroundColor = .purpleDefault
     }
-}
-
-// MARK: - MyAbstractFactory
-extension HeaderView: MyAbstractFactory {
-    func getCellHeight() -> CGFloat {
-        72
-    }
-}
-
-#Preview(traits: .sizeThatFitsLayout) {
-    ItemView()
 }
