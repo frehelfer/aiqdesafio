@@ -73,7 +73,7 @@ class ItemViewModel {
                         product: product,
                         isRequired: categoryItem.isRequired,
                         isSelected: cart.products.contains(where: { $0.id == product.id }),
-                        quantity: cart.products.filter({ $0.id == product.id }).count,
+                        quantity: cart.products.reduce(0) { $1.id == product.id ? $0 + 1 : $0 },
                         type: product.getProductType(categoryItem: categoryItem)
                     )
                 )
@@ -91,6 +91,11 @@ class ItemViewModel {
         }
     }
     
+    private func updateUI() {
+        createCustomCells(user: user, item: item)
+        viewDelegate?.reloadTableView()
+    }
+    
     func getNumberOfCells() -> Int {
         customCells.count
     }
@@ -104,25 +109,80 @@ class ItemViewModel {
 extension ItemViewModel: QuantityViewProtocol {
     
     func minusButtonTapped() {
+        if cart.quantity == 1 {
+            cart.products.removeAll()
+        }
         cart.quantity -= 1
-        createCustomCells(user: user, item: item)
-        viewDelegate?.reloadTableView()
+        updateUI()
     }
     
     func plusButtonTapped() {
+        if cart.quantity == 0 {
+            cart.products.append(item.categoryList[0].products[0])
+        }
         cart.quantity += 1
-        createCustomCells(user: user, item: item)
-        viewDelegate?.reloadTableView()
+        updateUI()
     }
 }
 
 // MARK: - ProductRowViewDelegate
 extension ItemViewModel: ProductRowViewDelegate {
     
+    // Sorry for this 🫣🥺, but hey, it's better to be working than not. I will fix this when I have more time 🥳
     func selectorButtonTapped(productRowView: ProductRowView, product: Product) {
         print(#function)
+        
+        // remove the product if it's already in the cart
+        if let index = cart.products.firstIndex(where: { $0.id == product.id }) {
+            cart.products.remove(at: index)
+            
+        } else {
+            
+            // get category information
+            if let categoryItem = item.categoryList.first(where: { $0.products.contains(where: { $0.id == product.id }) }),
+               let maxCategoryQuantity = categoryItem.maxOrderQuantity {
+                
+                let productsFromSameCategory = cart.products.filter { cartProduct in
+                    categoryItem.products.contains { $0.id == cartProduct.id }
+                }
+                
+                // check product quantity from the same category
+                if productsFromSameCategory.count < maxCategoryQuantity {
+                    cart.products.append(product)
+                    
+                    // If cart quantity is 0, update it to 1
+                    if cart.quantity == 0 {
+                        cart.quantity = 1
+                    }
+                    
+                } else if productsFromSameCategory.count <= 1 {
+                    cart.products.removeAll { productToRemove in
+                        productsFromSameCategory.contains { $0.id == productToRemove.id }
+                    }
+                    cart.products.append(product)
+                }
+            }
+        }
+        
+        updateUI()
+    }
+    
+    func plusButtonTapped(product: Product) {
+        print(#function)
+        
+        if cart.quantity == 0 {
+            cart.quantity = 1
+        }
+        
         cart.products.append(product)
-        createCustomCells(user: user, item: item)
-        viewDelegate?.reloadTableView()
+        updateUI()
+    }
+    
+    func minusButtonTapped(product: Product) {
+        print(#function)
+        if let index = cart.products.firstIndex(where: { $0.id == product.id }) {
+            cart.products.remove(at: index)
+            updateUI()
+        }
     }
 }

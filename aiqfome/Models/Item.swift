@@ -73,7 +73,7 @@ extension Item {
                     Product(
                         id: UUID(),
                         name: "coca-cola",
-                        price: 10,
+                        price: 5,
                         oldPrice: nil
                     ),
                     Product(

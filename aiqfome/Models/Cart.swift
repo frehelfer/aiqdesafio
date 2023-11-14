@@ -16,6 +16,6 @@ struct Cart {
 
 extension Cart {
     func calculateTotalPrice() -> Double {
-        products.reduce(0) { $0 + $1.price }
+        products.reduce(0) { $0 + $1.price } * Double(quantity)
     }
 }

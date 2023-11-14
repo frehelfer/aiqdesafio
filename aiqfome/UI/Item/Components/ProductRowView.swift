@@ -15,6 +15,8 @@ enum SelectorType {
 
 protocol ProductRowViewDelegate: AnyObject {
     func selectorButtonTapped(productRowView: ProductRowView, product: Product)
+    func plusButtonTapped(product: Product)
+    func minusButtonTapped(product: Product)
 }
 
 class ProductRowView: UIView, MyAbstractFactory {
@@ -71,7 +73,6 @@ class ProductRowView: UIView, MyAbstractFactory {
     }()
     
     @objc private func selectorButtonTapped() {
-        print(#function)
         delegate?.selectorButtonTapped(productRowView: self, product: product)
     }
     
@@ -84,6 +85,7 @@ class ProductRowView: UIView, MyAbstractFactory {
         quantity: Int,
         type: SelectorType
     ) {
+        self.delegate = delegate
         self.product = product
         super.init(frame: .zero)
         productName.text = product.name
@@ -207,10 +209,10 @@ extension ProductRowView: ViewCode {
 // MARK: - TitleQuantityButtonProtocol
 extension ProductRowView: QuantityButtonProtocol {
    func plusButtonTapped() {
-//       delegate?.plusButtonTapped()
+       delegate?.plusButtonTapped(product: product)
    }
    
    func minusButtonTapped() {
-//       delegate?.minusButtonTapped()
+       delegate?.minusButtonTapped(product: product)
    }
 }
