@@ -81,7 +81,7 @@ extension ItemView: ViewCode {
             // ticketButton
             ticketButton.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 24),
             ticketButton.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -24),
-            ticketButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            ticketButton.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor, constant: -8),
             ticketButton.heightAnchor.constraint(equalToConstant: 48)
         ])
     }
